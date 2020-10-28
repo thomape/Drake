@@ -1,0 +1,16 @@
+FEATURES:
+- Add the ability to use common methods someone else already determined
+    - wiki has the original estimates that were used
+        -do a generous calc and a conservative calc
+    -wiki has the newest estimates that are used
+        -do a generous calc and a conservative calc
+
+-User input validation
+    - check if '?'
+    - check if float or int
+
+- Command line args
+    - drake --version
+    - drake --help
+    - drake --input (from file)
+    - drake --quick (just put all values in space deliminted in terminal)
