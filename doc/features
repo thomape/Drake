@@ -14,3 +14,5 @@ FEATURES:
     - drake --help
     - drake --input (from file)
     - drake --quick (just put all values in space deliminted in terminal)
+
+https://en.wikipedia.org/wiki/Drake_equation
