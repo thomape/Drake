@@ -3,7 +3,7 @@
 **The Drake equation is designed to predict the likelihood of life elsewhere in the universe.
     The following parameters are required to produce accurate results.**
 
----
+--- ---
 
     ## ARGUMENTS: ##
         -h : Help
