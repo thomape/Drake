@@ -6,11 +6,11 @@
 --- 
 
 **ARGUMENTS:**
-*h : Help
-*v : Version
-*i : Command Line Input. ex: -i 1 2 3 4 5 6 7 - Must contain the seven values in correct order.
-*s : Sample Data. This will display a best and worst case scenario based on the current scientific understanding and when the formula was surmised.
-*a : Assisted Mode. This will give the user hints as they progress through the variables.
+   - -h : Help
+   - -v : Version
+   - -i : Command Line Input. ex: -i 1 2 3 4 5 6 7 - Must contain the seven values in correct order.
+   - -s : Sample Data. This will display a best and worst case scenario based on the current scientific understanding and when the formula was surmised.
+   - -a : Assisted Mode. This will give the user hints as they progress through the variables.
         
 
 **USAGE:**
