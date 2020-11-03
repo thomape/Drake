@@ -1,11 +1,11 @@
-# The Drake Equation
+# The Drake Equation #
 
 **The Drake equation is designed to predict the likelihood of life elsewhere in the universe.
     The following parameters are required to produce accurate results.**
 
 ---
 
-    ** ARGUMENTS: **
+    ## ARGUMENTS: ##
         -h : Help
         -v : Version
         -i : Command Line Input. ex: -i 1 2 3 4 5 6 7 - Must contain the seven values in correct order.
