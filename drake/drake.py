@@ -1,6 +1,8 @@
 import sys
+import numpy as np
 
 def preface():
+
     print('''
     The Drake equation is designed to predict the likelihood of life elsewhere in the universe.
     The following parameters are required to produce accurate results.
@@ -10,7 +12,7 @@ def preface():
         -i : command line input. ex: -i 1 2 3 4 5 6 7 - Must contain the seven values in correct order.
         -v : version
         -s : sample date. This will display a best and worst case scenerio based on the currect scientific understanding and when the formula was surmised.
-        -A : Assited mode. This will give the user hints as they progress through the varibles.
+        -a : Assisted mode. This will give the user hints as they progress through the variables.
             
 
     USAGE:
@@ -60,7 +62,7 @@ def user_input():
                     flag = True
                 
                 
-    print(user_input)
+    #print(user_input)
     return user_input
 
 
@@ -91,27 +93,137 @@ def calculate_data(user_data):
 
 
 def sample_data():
-    # input the values from websites
-    # display a best and worst case scenerio for both
-    print("sample")
-    return
+    
+    orig_low = {'R*':1.0,'fp':0.2,'ne':1.0,'fl':1.0,'fi':1.0,'fc':0.1,'L':1000.0}
+    orig_high = {'R*':1.0,'fp':0.5,'ne':5.0,'fl':1.0,'fi':1.0,'fc':0.2,'L':100000000.0}
+    current_low = {'R*':1.5,'fp':0.00001,'ne':0.00001,'fl':0.00001,'fi':0.000000001,'fc':0.2,'L':304.0}
+    current_high = {'R*':3.0,'fp':1.0,'ne':0.2,'fl':0.13,'fi':1.0,'fc':0.2,'L':1000000000.0}
 
+    estimates = [orig_low, orig_high, current_low, current_high]
+
+    for est in estimates:
+        if(est == orig_low):
+            print("---------------------")
+            print("Classic low estimate.")
+            calculate_data(est)
+            print("---------------------")
+        elif(est == orig_high):
+            print("Classic high estimate.")
+            calculate_data(est)
+            print("---------------------")
+        elif(est == current_low):
+            print("Current low estimate.")            
+            calculate_data(est)
+            print("---------------------")
+        elif(est == current_high):
+            print("Current high estimate.")
+            calculate_data(est)
+            print("---------------------")
+        else:
+            (print("Error."))
+            
 
 def get_version():
      version = str(1.0)
      return version  
 
 
-def command_input():
-    print("Command input")
-    return
+def command_input(user_input):
 
+    user_input = {'R*':float(sys.argv[2]),'fp':float(sys.argv[3]),'ne':float(sys.argv[4]),
+                'fl':float(sys.argv[5]),'fi':float(sys.argv[6]),'fc':float(sys.argv[7]),
+                'L':float(sys.argv[8])}
+    
+    calculate_data(user_input)
 
 
 def assisted_mode():
-    # will give the user help on values that make sense for each varible
-    print("Assisted mode engage!!!!")
-    return
+    
+    vars_list = []
+    user_input = {'R*':0.0,'fp':0.0,'ne':0.0,'fl':0.0,'fi':0.0,'fc':0.0,'L':0.0}
+    method_choice = input("Select 1 for CLASSIC mode, or 2 for MODERN mode.")
+
+    if(method_choice == "1"):
+        print("Classic mode initiated.")
+        for key in user_input.keys():
+
+            print("---------------------")
+
+            if(key == "R*"):
+                print("Range: 1.0 - 1.0")
+            elif(key == "fp"):
+                print("Range: 0.2 - 0.5")
+            elif(key == "ne"):
+                print("Range: 1.0 - 5.0")
+            elif(key == "fl"):
+                print("Range: 1.0 - 1.0")
+            elif(key == "fi"):
+                print("Range: 1.0 - 1.0") 
+            elif(key == "fc"):
+                print("Range: 0.1 - 0.2")
+            elif(key == "L"):
+                print("Range: 1000.0 - 100000000.0")
+            else:
+                print("Error")
+
+            flag = False
+            while not flag:
+                data = input('Input ' + key + ':  ' )
+                
+                if data == '?':
+                    message = user_help(key)
+                    print(message)
+                elif(data):
+                    try:
+                        data = float(data)
+                    except:
+                        print("Invalid type. Must be float or int")
+
+                    if(isinstance(data,float)):
+                        user_input[key] = float(data)
+                        flag = True
+    elif(method_choice == "2"):
+        print("Modern mode initiated.")
+        for key in user_input.keys():
+
+            print("---------------------")
+
+            if(key == "R*"):
+                print("Range: 1.5 - 3.0")
+            elif(key == "fp"):
+                print("Range: 0.00001 - 1.0")
+            elif(key == "ne"):
+                print("Range: 0.00001 - 0.2")
+            elif(key == "fl"):
+                print("Range: 0.00001 - 0.13")
+            elif(key == "fi"):
+                print("Range: 0.000000001 - 1.0") 
+            elif(key == "fc"):
+                print("Range: 0.2 - 0.2")
+            elif(key == "L"):
+                print("Range: 304 - 1000000000.0")
+            else:
+                print("Error")
+
+            flag = False
+            while not flag:
+                data = input('Input ' + key + ':  ' )
+                
+                if data == '?':
+                    message = user_help(key)
+                    print(message)
+                elif(data):
+                    try:
+                        data = float(data)
+                    except:
+                        print("Invalid type. Must be float or int")
+
+                    if(isinstance(data,float)):
+                        user_input[key] = float(data)
+                        flag = True
+    else:
+        print("Input not recognized. Initiating manual entry mode.")
+    return user_input
 
 
 if __name__ == "__main__":
@@ -124,23 +236,28 @@ if __name__ == "__main__":
             if arg == "-h":
                 preface()
             elif arg == "-i":
-                command_input()
+                cmd_input = sys.argv
+                if(len(sys.argv) != 9):
+                    print("Incorrect parameter amount provided. Initiating manual input mode.")
+                else:
+                    command_input(cmd_input)
             elif arg == "-v":
                 version = get_version()
-                print(version)
+                print("Version:  " + version)
             elif arg == "-s":
                 sample_data()
-            elif arg == "A":
-                assisted_mode()  
+            elif arg == "-a":
+                assisted_input = assisted_mode()
+                calculate_data(assisted_input)  
 
 
     if(len(sys.argv) == 1):
         data = user_input()
         calculate_data(data)
     else:
-        cont = input("Enter to continue: ")
+        cont = input("ENTER to continue: ")
         if cont == "":
             data = user_input()
             calculate_data(data)
         else:
-            print("Goodbye...LOSER!!!")
+            print("Thanks for shopping at Walmart.")
