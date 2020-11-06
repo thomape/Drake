@@ -41,7 +41,7 @@ def preface():
 def user_input():
 
     vars_list = []
-    user_input = {'R*':0.0,'fp':0.0,'ne':0.0,'fl':0.0,'fi':0.0,'fc':0.0,'L':0.0}
+    user_input = {'R*':0.0,'fp':0.0,'ne':0.0,'fl':0.0,'fi':0.0,'fc':0.0,'L ':0.0}
     for key in user_input.keys():
 
         flag = False
@@ -55,7 +55,7 @@ def user_input():
                 try:
                     data = float(data)
                 except:
-                    print("Invalid type. Must be float or int")
+                    print("Invalid type. Must be a decimal or an integer")
 
                 if(isinstance(data,float)):
                     user_input[key] = float(data)
@@ -89,7 +89,7 @@ def calculate_data(user_data):
     for key in user_data.keys():
         result = user_data[key] * result
     
-    print('Result: ' + str(result))
+    print('Result: ' + str(result) + ' civilizations within the Milky Way galaxy.')
 
 
 def sample_data():
@@ -177,7 +177,7 @@ def assisted_mode():
                     try:
                         data = float(data)
                     except:
-                        print("Invalid type. Must be float or int")
+                        print("Invalid type. Must be a decimal or an integer")
 
                     if(isinstance(data,float)):
                         user_input[key] = float(data)
@@ -216,7 +216,7 @@ def assisted_mode():
                     try:
                         data = float(data)
                     except:
-                        print("Invalid type. Must be float or int")
+                        print("Invalid type. Must be a decimal or an integer")
 
                     if(isinstance(data,float)):
                         user_input[key] = float(data)
@@ -250,14 +250,18 @@ if __name__ == "__main__":
                 assisted_input = assisted_mode()
                 calculate_data(assisted_input)  
 
-
-    if(len(sys.argv) == 1):
-        data = user_input()
-        calculate_data(data)
-    else:
-        cont = input("ENTER to continue: ")
-        if cont == "":
+    cont_flg = true
+    while cont_flg:
+        if(len(sys.argv) == 1):
+            print("Entered values must be an integer or a decimal.")
             data = user_input()
             calculate_data(data)
+            False
         else:
-            print("Thanks for shopping at Walmart.")
+            cont = input("ENTER to continue: ")
+            if cont == "":
+                print("Entered values must be an integer or a decimal.")
+                data = user_input()
+                calculate_data(data)
+            else:
+                print("Thanks for shopping at Walmart.")
