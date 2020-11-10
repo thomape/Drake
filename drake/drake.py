@@ -1,5 +1,5 @@
 import sys
-import numpy as np
+#import numpy as np - for some reason pip cant be install and this no numpy its stupid cuz it was working last week but some magic must have happened.
 
 def preface():
 
@@ -250,13 +250,13 @@ if __name__ == "__main__":
                 assisted_input = assisted_mode()
                 calculate_data(assisted_input)  
 
-    cont_flg = true
+    cont_flg = True
     while cont_flg:
         if(len(sys.argv) == 1):
             print("Entered values must be an integer or a decimal.")
             data = user_input()
             calculate_data(data)
-            False
+            cont_flg = False
         else:
             cont = input("ENTER to continue: ")
             if cont == "":
