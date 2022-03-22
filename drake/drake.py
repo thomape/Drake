@@ -1,5 +1,5 @@
 import sys
-#import numpy as np - for some reason pip cant be install and this no numpy its stupid cuz it was working last week but some magic must have happened.
+import numpy as np 
 
 def preface():
 
