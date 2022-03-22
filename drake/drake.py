@@ -264,4 +264,4 @@ if __name__ == "__main__":
                 data = user_input()
                 calculate_data(data)
             else:
-                print("Thanks for shopping at Walmart.")
+                print("Thanks for being curious.")
